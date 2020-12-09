@@ -47,6 +47,12 @@ Action will fail if the number of Informative findings is equal or bigger then t
 ***Default:*** 10
 ***Required:*** no
 
+### `projectPath`
+
+The path to the smart contract's project
+***Default:*** "."
+***Required:*** no
+
 ## Example usage
 
 ```yaml
@@ -75,6 +81,7 @@ jobs:
           failOnLowResults: 1
           failOnOptimizationResults: 1
           failOnInformativeResults: 10
+          projectPath: "."
 ```
 
 ## For Developers

@@ -29,6 +29,10 @@ inputs:
     description: "Action will fail if then number of Optimization findings is equal or bigger then this value (0 to disable)"
     required: false
     default: 1
+  projectPath:
+    description: "THe path for the smart contracts' project."
+    required: false
+    default: "."
 runs:
   using: 'node12'
   main: 'dist/index.js'
