@@ -16,27 +16,42 @@ Specify slither version to use. It will download it from official github project
 ***Default:*** "0.6.14"
 ***Required:*** no
 
-## Outputs
 
-### `issues`
+### `failOnHighResults`
 
-Found issues in the slither scan
+Action will fail if the number of High findings is equal or bigger then this value (0 to disable)
+***Default:*** 1
+***Required:*** no
 
+### `failOnMediumResults`
+
+Action will fail if the number of Medium findings is equal or bigger then this value (0 to disable)
+***Default:*** 1
+***Required:*** no
+
+### `failOnLowResults`
+
+Action will fail if the number of Low findings is equal or bigger then this value (0 to disable)
+***Default:*** 1
+***Required:*** no
+
+### `failOnOptimizationResults`
+
+Action will fail if the number of Optimization findings is equal or bigger then this value (0 to disable)
+***Default:*** 1
+***Required:*** no
+
+### `failOnInformativeResults`
+
+Action will fail if the number of Informative findings is equal or bigger then this value (0 to disable)
+***Default:*** 10
+***Required:*** no
 
 ## Example usage
 
 ```yaml
 uses: luisfontes19/slither-static-analysis@v0.2.0
 ```
-
-## TODO
-
-* Allow to filter results to display. (hide by severity)
-* Custom rules for failure
-  * Ex. Fail if any high finding
-  * Ex. Fail if more then 10 mediums
-  * Ex. Ignore informative
-
 
 ## Full Action Example
 
@@ -54,6 +69,12 @@ jobs:
         uses: luisfontes19/slither-static-analysis@v0.2.0
         with:
           slither-version: '0.6.13'
+          run-npm-install: true
+          failOnHighResults: 1
+          failOnMediumResults: 1
+          failOnLowResults: 1
+          failOnOptimizationResults: 1
+          failOnInformativeResults: 10
 ```
 
 ## For Developers
