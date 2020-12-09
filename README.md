@@ -26,8 +26,17 @@ Found issues in the slither scan
 ## Example usage
 
 ```yaml
-uses: actions/slither-static-analysis
+uses: luisfontes19/slither-static-analysis@v0.2.0
 ```
+
+## TODO
+
+* Allow to filter results to display. (hide by severity)
+* Custom rules for failure
+  * Ex. Fail if any high finding
+  * Ex. Fail if more then 10 mediums
+  * Ex. Ignore informative
+
 
 ## Full Action Example
 
@@ -42,7 +51,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Slither Static Analysis
-        uses: actions/slither-static-analysis
+        uses: luisfontes19/slither-static-analysis@v0.2.0
         with:
           slither-version: '0.6.13'
 ```
