@@ -1,5 +1,5 @@
 name: 'slither-static-analysis'
-description: 'Run slither static analyser'
+description: 'Run slither static analyser for Solidity Smart Contracts'
 inputs:
   run-npm-install:
     description: "By default the action will run npm install on the source folder. Set this variable as false to disable it"
