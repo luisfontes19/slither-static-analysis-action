@@ -1,9 +1,8 @@
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
-const VERSION = core.getInput("slither-version") || "0.6.14";
-const NPM_INSTALL = core.getInput("run-npm-install") === "true";
 
-
+const slitherVersion = core.getInput("slither-slitherVersion") || "0.6.14";
+const runNpmInstall = core.getInput("run-npm-install") === "true";
 const failOnHighResults = parseInt(core.getInput("failOnHighResults")) || 1;
 const failOnMediumResults = parseInt(core.getInput("failOnMediumResults")) || 1;
 const failOnLowResults = parseInt(core.getInput("failOnLowResults")) || 1;
@@ -18,27 +17,10 @@ const run = async () => {
 
   const counts = { "High": 0, "Medium": 0, "Low": 0, "Informational": 0, "Optimization": 0 };
 
+  printDebugInfo();
 
   try {
-    core.info("Install dependencies");
-    await exec.exec("sudo apt-get install -y git python3 python3-setuptools wget software-properties-common");
-
-    core.info("Downloading slither");
-    await exec.exec(`wget https://github.com/crytic/slither/archive/${VERSION}.zip -O /tmp/slither.zip`);
-
-
-    core.info("Unzipping slither");
-    await exec.exec(" unzip /tmp/slither.zip -d .");
-
-
-    core.info("Installing slither");
-    await exec.exec("sudo python3 setup.py install", undefined, { cwd: `slither-${VERSION}` });
-
-
-    if (NPM_INSTALL) {
-      core.info("Installing dependencies");
-      await exec.exec("npm install", undefined, { cwd: projectPath });
-    }
+    await prepare();
   }
   catch (ex) {
     core.setFailed("Something went wrong. Check above for more information");
@@ -78,6 +60,40 @@ const run = async () => {
     console.debug(ex);
     return;
   }
+}
+
+const prepare = async () => {
+  core.info("Install dependencies");
+  await exec.exec("sudo apt-get install -y git python3 python3-setuptools wget software-properties-common");
+
+  core.info("Downloading slither");
+  await exec.exec(`wget https://github.com/crytic/slither/archive/${slitherVersion}.zip -O /tmp/slither.zip`);
+
+
+  core.info("Unzipping slither");
+  await exec.exec(" unzip /tmp/slither.zip -d .");
+
+
+  core.info("Installing slither");
+  await exec.exec("sudo python3 setup.py install", undefined, { cwd: `slither-${slitherVersion}` });
+
+
+  if (runNpmInstall) {
+    core.info("Installing dependencies");
+    await exec.exec("npm install", undefined, { cwd: projectPath });
+  }
+}
+
+const printDebugInfo = () => {
+  core.debug("Configs:");
+  core.debug("slitherVersion: " + slitherVersion);
+  core.debug("failOnHighResults: " + failOnHighResults);
+  core.debug("failOnMediumResults: " + failOnMediumResults);
+  core.debug("failOnLowResults: " + failOnLowResults);
+  core.debug("failOnInformativeResults: " + failOnInformativeResults);
+  core.debug("failOnOptimizationResults: " + failOnOptimizationResults);
+  core.debug("projectPath: " + projectPath);
+  core.debug("runNpmInstall: " + runNpmInstall);
 }
 
 const runSlither = async (): Promise<string> => {
