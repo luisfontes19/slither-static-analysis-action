@@ -1,0 +1,23 @@
+{
+  "name": "slither-static-analysis",
+  "version": "1.0.0",
+  "description": "Github action for Slither static analyser for Solidity",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "npx nodemon --watch \"src/**/*.ts\" --ignore \"node_modules/**/*\" --exec npx ts-node src/index.ts",
+    "build": "ncc build -m src/index.ts"
+  },
+  "author": "luisfontes@protonmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/exec": "^1.0.4"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.25.1",
+    "nodemon": "^2.0.6",
+    "npx": "^10.2.2",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.2"
+  }
+}
