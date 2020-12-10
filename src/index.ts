@@ -3,11 +3,12 @@ import * as exec from '@actions/exec';
 
 const slitherVersion = core.getInput("slither-slitherVersion") || "0.6.14";
 const runNpmInstall = core.getInput("run-npm-install") === "true";
-const failOnHighResults = parseInt(core.getInput("failOnHighResults")) || 1;
-const failOnMediumResults = parseInt(core.getInput("failOnMediumResults")) || 1;
-const failOnLowResults = parseInt(core.getInput("failOnLowResults")) || 1;
-const failOnInformativeResults = parseInt(core.getInput("failOnInformativeResults")) || 10;
-const failOnOptimizationResults = parseInt(core.getInput("failOnOptimizationResults")) || 1;
+const failOnHighResults = parseInt(core.getInput("high-threshold")) || 1;
+const failOnMediumResults = parseInt(core.getInput("medium-threshold")) || 1;
+const failOnLowResults = parseInt(core.getInput("low-threshold")) || 1;
+const failOnInformativeResults = parseInt(core.getInput("informative-threshold")) || 10;
+const failOnOptimizationResults = parseInt(core.getInput("optimization-threshold")) || 1;
+const slitherParams = core.getInput("slither-params") || "";
 const projectPath = core.getInput("projectPath") || ".";
 
 type Severity = "High" | "Medium" | "Low" | "Informational" | "Optimization";
@@ -43,6 +44,10 @@ const run = async () => {
       return;
     }
 
+    console.log("")
+    console.log("----------------------------------------");
+    console.log("                FIndings")
+    console.log("----------------------------------------");
     data.results.detectors.forEach((d: any) => {
       const severity = d.impact as Severity;
       counts[severity]++;
@@ -106,7 +111,7 @@ const runSlither = async (): Promise<string> => {
     };
     options.cwd = projectPath;
 
-    exec.exec("slither --json - .", undefined, options).then(() => resolve(output)).catch(() => resolve(output));
+    exec.exec("slither --json - . " + slitherParams, undefined, options).then(() => resolve(output)).catch(() => resolve(output));
   })
 }
 

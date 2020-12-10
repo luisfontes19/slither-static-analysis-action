@@ -17,31 +17,31 @@ Specify slither version to use. It will download it from official github project
 ***Required:*** no
 
 
-### `failOnHighResults`
+### `high-threshold`
 
 Action will fail if the number of High findings is equal or bigger then this value (0 to disable)
 ***Default:*** 1
 ***Required:*** no
 
-### `failOnMediumResults`
+### `medium-threshold`
 
 Action will fail if the number of Medium findings is equal or bigger then this value (0 to disable)
 ***Default:*** 1
 ***Required:*** no
 
-### `failOnLowResults`
+### `low-threshold`
 
 Action will fail if the number of Low findings is equal or bigger then this value (0 to disable)
 ***Default:*** 1
 ***Required:*** no
 
-### `failOnOptimizationResults`
+### `optimization-threshold`
 
 Action will fail if the number of Optimization findings is equal or bigger then this value (0 to disable)
 ***Default:*** 1
 ***Required:*** no
 
-### `failOnInformativeResults`
+### `informative-threshold`
 
 Action will fail if the number of Informative findings is equal or bigger then this value (0 to disable)
 ***Default:*** 10
@@ -53,10 +53,15 @@ The path to the smart contract's project
 ***Default:*** "."
 ***Required:*** no
 
+### `slither-params`
+
+Extra slither params to be appended. By default the action runnins with: ```slither --json - .```
+***Required:*** no
+
 ## Example usage
 
 ```yaml
-uses: luisfontes19/slither-static-analysis@v0.2.0
+uses: luisfontes19/slither-static-analysis@v0.3.0
 ```
 
 ## Full Action Example
@@ -72,15 +77,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Slither Static Analysis
-        uses: luisfontes19/slither-static-analysis@v0.2.0
+        uses: luisfontes19/slither-static-analysis@v0.3.0
         with:
           slither-version: '0.6.13'
           run-npm-install: true
-          failOnHighResults: 1
-          failOnMediumResults: 1
-          failOnLowResults: 1
-          failOnOptimizationResults: 1
-          failOnInformativeResults: 10
+          high-threshold: 1
+          medium-threshold: 1
+          low-threshold: 1
+          optimization-threshold: 1
+          informative-threshold: 10
           projectPath: "."
 ```
 
