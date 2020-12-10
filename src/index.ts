@@ -106,7 +106,7 @@ const runSlither = async (): Promise<string> => {
     };
     options.cwd = projectPath;
 
-    exec.exec("slither . --json -", undefined, options).then(() => resolve(output)).catch(() => resolve(output));
+    exec.exec("slither --json - .", undefined, options).then(() => resolve(output)).catch(() => resolve(output));
   })
 }
 
