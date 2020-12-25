@@ -33,6 +33,9 @@ inputs:
     description: "THe path for the smart contracts' project."
     required: false
     default: "."
+  slither-params:
+    description: "Extra slither parameters to use when running the tool"
+    required: false
 runs:
   using: 'node12'
   main: 'dist/index.js'
