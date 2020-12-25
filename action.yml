@@ -9,23 +9,23 @@ inputs:
     description: "Specify slither version to use. It will download it from official github project."
     required: false
     default: "0.6.14"
-  failOnHighResults:
+  high-threshold:
     description: "Action will fail if the number of High findings is equal or bigger then this value (0 to disable)"
     required: false
     default: 1
-  failOnMediumResults:
+  medium-threshold:
     description: "Action will fail if the number of Medium findings is equal or bigger then this value (0 to disable)"
     required: false
     default: 1
-  failOnLowResults:
+  low-threshold:
     description: "Action will fail if the number of Low findings is equal or bigger then this value (0 to disable)"
     required: false
     default: 1
-  failOnInformativeResults:
+  informative-threshold:
     description: "Action will fail if then number of Informative findings is equal or bigger then this value (0 to disable)"
     required: false
     default: 10
-  failOnOptimizationResults:
+  optimization-threshold:
     description: "Action will fail if then number of Optimization findings is equal or bigger then this value (0 to disable)"
     required: false
     default: 1
