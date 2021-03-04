@@ -44,17 +44,18 @@ const run = async () => {
       return;
     }
 
-    console.log("")
-    console.log("----------------------------------------");
-    console.log("                FIndings")
-    console.log("----------------------------------------");
-    data.results.detectors.forEach((d: any) => {
+    // console.log("")
+    // console.log("----------------------------------------");
+    // console.log("                Findings")
+    // console.log("----------------------------------------");
+    (data.results.detectors || "").forEach((d: any) => {
       const severity = d.impact as Severity;
       counts[severity]++;
 
-      console.log(`[${d.impact}] ${d.check}:`);
-      console.log(d.description);
-      console.log("");
+      core.error(`[${d.impact}] ${d.check}:\n${d.description}\n`);
+      // console.log(`[${d.impact}] ${d.check}:`);
+      // console.log(d.description);
+      // console.log("");
     });
 
 
@@ -117,15 +118,16 @@ const runSlither = async (): Promise<string> => {
 
 //TODO: replace any
 const showStats = (counts: any) => {
-  console.log("----------------------------------------");
-  console.log("                  Stats")
-  console.log("----------------------------------------");
-  console.log(`High:          ${counts["High"]}`);
-  console.log(`Medium:        ${counts["Medium"]}`);
-  console.log(`Low:           ${counts["Low"]}`);
-  console.log(`Informative:   ${counts["Informational"]}`);
-  console.log(`Optimizations: ${counts["Optimization"]}`);
-  console.log("----------------------------------------");
+  core.warning(
+    `----------------------------------------
+                  Stat
+----------------------------------------
+High:          ${counts["High"]}
+Medium:        ${counts["Medium"]}
+Low:           ${counts["Low"]}
+Informative:   ${counts["Informational"]}
+Optimizations: ${counts["Optimization"]}
+----------------------------------------`);
 
   if (failOnHighResults !== 0 && failOnHighResults <= counts["High"])
     core.setFailed(`Number of High results is equal or bigger then the defined threshold of ${failOnHighResults}`);
