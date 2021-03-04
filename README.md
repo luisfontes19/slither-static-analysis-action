@@ -61,7 +61,7 @@ Extra slither params to be appended. By default the action runnins with: ```slit
 ## Example usage
 
 ```yaml
-uses: luisfontes19/slither-static-analysis-action@v0.3.1
+uses: luisfontes19/slither-static-analysis-action@v0.3.2
 ```
 
 ## Full Action Example
@@ -77,7 +77,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Slither Static Analysis
-        uses: luisfontes19/slither-static-analysis-action@v0.3.1
+        uses: luisfontes19/slither-static-analysis-action@v0.3.2
         with:
           slither-version: '0.6.13'
           run-npm-install: true
