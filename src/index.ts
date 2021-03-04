@@ -44,18 +44,19 @@ const run = async () => {
       return;
     }
 
-    // console.log("")
-    // console.log("----------------------------------------");
-    // console.log("                Findings")
-    // console.log("----------------------------------------");
+    console.log("")
+    console.log("----------------------------------------");
+    console.log("                Findings")
+    console.log("----------------------------------------");
     (data.results.detectors || []).forEach((d: any) => {
       const severity = d.impact as Severity;
       counts[severity]++;
 
-      core.error(`[${d.impact}] ${d.check}:\n${d.description}\n`);
-      // console.log(`[${d.impact}] ${d.check}:`);
-      // console.log(d.description);
-      // console.log("");
+      core.error(`[${d.impact}] ${d.check}: ${d.description}\n`);
+
+      console.log(`[${d.impact}] ${d.check}:`);
+      console.log(d.description);
+      console.log("");
     });
 
 
@@ -118,16 +119,7 @@ const runSlither = async (): Promise<string> => {
 
 //TODO: replace any
 const showStats = (counts: any) => {
-  core.warning(
-    `----------------------------------------
-                  Stat
-----------------------------------------
-High:          ${counts["High"]}
-Medium:        ${counts["Medium"]}
-Low:           ${counts["Low"]}
-Informative:   ${counts["Informational"]}
-Optimizations: ${counts["Optimization"]}
-----------------------------------------`);
+  core.warning(`Stats: High: ${counts["High"]}, Medium: ${counts["Medium"]}, Low: ${counts["Low"]}, Informative: ${counts["Informational"]}, Optimizations: ${counts["Optimization"]}`);
 
   if (failOnHighResults !== 0 && failOnHighResults <= counts["High"])
     core.setFailed(`Number of High results is equal or bigger then the defined threshold of ${failOnHighResults}`);
