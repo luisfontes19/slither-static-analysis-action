@@ -48,7 +48,7 @@ const run = async () => {
     // console.log("----------------------------------------");
     // console.log("                Findings")
     // console.log("----------------------------------------");
-    (data.results.detectors || "").forEach((d: any) => {
+    (data.results.detectors || []).forEach((d: any) => {
       const severity = d.impact as Severity;
       counts[severity]++;
 
