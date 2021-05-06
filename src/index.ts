@@ -1,7 +1,7 @@
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 
-const slitherVersion = core.getInput("slither-slitherVersion") || "0.6.14";
+const slitherVersion = core.getInput("slither-version") || "0.6.14";
 const runNpmInstall = core.getInput("run-npm-install") === "true";
 const failOnHighResults = parseInt(core.getInput("high-threshold")) || 1;
 const failOnMediumResults = parseInt(core.getInput("medium-threshold")) || 1;
