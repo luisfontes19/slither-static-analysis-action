@@ -1,6 +1,6 @@
 {
   "name": "slither-static-analysis",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Github action for Slither static analyser for Solidity",
   "main": "index.js",
   "scripts": {
