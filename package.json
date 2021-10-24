@@ -11,7 +11,8 @@
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.2.6",
-    "@actions/exec": "^1.0.4"
+    "@actions/exec": "^1.0.4",
+    "@types/node": "^16.11.4"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.25.1",
