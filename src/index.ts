@@ -78,7 +78,7 @@ const prepare = async () => {
 
 
   core.info("Unzipping slither");
-  await exec.exec(" unzip /tmp/slither.zip -qq -d .");
+  await exec.exec(" unzip -qq /tmp/slither.zip -d .");
 
 
   core.info("Installing slither");
