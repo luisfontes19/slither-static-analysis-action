@@ -2,6 +2,8 @@
 
 This action is a wrapper for slither, a static vulnerability tool for Solidity smart contracts.
 
+**If you're having errors while running slither please check the official [slither repo](https://github.com/crytic/slither) as this is just a wrapper for the tool**
+
 ## Inputs
 
 ### `run-npm-install`
@@ -13,7 +15,7 @@ By default the action will run npm install on the source folder. Set this variab
 ### `slither-version`
 
 Specify slither version to use. It will download it from official github project.
-***Default:*** "0.6.14"
+***Default:*** "0.8.1"
 ***Required:*** no
 
 
@@ -61,7 +63,7 @@ Extra slither params to be appended. By default the action runnins with: ```slit
 ## Example usage
 
 ```yaml
-uses: luisfontes19/slither-static-analysis-action@v0.3.2
+uses: luisfontes19/slither-static-analysis-action@v0.3.4
 ```
 
 ## Full Action Example
@@ -98,3 +100,4 @@ npm run build
 #commit
 #push
 ```
+
