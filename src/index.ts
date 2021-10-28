@@ -74,11 +74,11 @@ const prepare = async () => {
   await exec.exec("sudo apt-get install -y git python3 python3-setuptools wget software-properties-common");
 
   core.info("Downloading slither");
-  await exec.exec(`wget https://github.com/crytic/slither/archive/${slitherVersion}.zip -O /tmp/slither.zip`);
+  await exec.exec(`wget --quiet https://github.com/crytic/slither/archive/${slitherVersion}.zip -O /tmp/slither.zip`);
 
 
   core.info("Unzipping slither");
-  await exec.exec(" unzip /tmp/slither.zip -d .");
+  await exec.exec(" unzip /tmp/slither.zip -qq -d .");
 
 
   core.info("Installing slither");
