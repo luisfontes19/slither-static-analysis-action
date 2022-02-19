@@ -1,3 +1,9 @@
+# DEPRECATED
+
+This project it now deprecated as the creators of slither release an [official action](https://github.com/marketplace/actions/slither-action). 
+
+This repo does only exist to that workflows using this action do not break
+
 # Slither Action
 
 This action is a wrapper for slither, a static vulnerability tool for Solidity smart contracts.
